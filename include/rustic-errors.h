@@ -4,10 +4,12 @@
 #include <stdlib.h>
 
 #ifndef __RC_CUSTOM
+#define __RC_CUSTOM
 
-#define __RC_RETURN_TYPE result_t
+#define __RC_STATUS_TYPE status_t
 #define __RC_SUCCESS success
 #define __RC_DEFAULT_ERR error
+#define __RC_DEFAULT_TYPE long
 
 typedef enum
 {
@@ -15,13 +17,15 @@ typedef enum
     error
 } status_t;
 
+#endif
+
 typedef struct
 {
-    status_t code;
+    __RC_STATUS_TYPE code;
     void *data; // Error message or result data
 } result_t;
 
-#endif
+#define __RC_RETURN_TYPE result_t
 
 #define __RC_VARIADIC_NE(_1, _2, NAME, ...) NAME
 #define __RC_VARIADIC_E(_0, _1, _2, NAME, ...) NAME
@@ -49,8 +53,8 @@ typedef struct
     *__rc = (data);                    \
     return (__RC_RETURN_TYPE){__RC_SUCCESS, (void *)__rc};
 #define __RC_OK_UNK(data)              \
-    long *__rc = malloc(sizeof(long)); \
-    *__rc = (long)(data);              \
+    __RC_DEFAULT_TYPE *__rc = malloc(sizeof(__RC_DEFAULT_TYPE)); \
+    *__rc = (__RC_DEFAULT_TYPE)(data);              \
     return (__RC_RETURN_TYPE){__RC_SUCCESS, (void *)__rc};
 #define __RC_OK_CLR() return (__RC_RETURN_TYPE){__RC_SUCCESS, NULL};
 #define ok(...) __RC_VARIADIC_E(_0 __VA_OPT__(, ) __VA_ARGS__, __RC_OK_VAL, __RC_OK_UNK, __RC_OK_CLR)(__VA_ARGS__)
