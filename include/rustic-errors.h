@@ -37,13 +37,13 @@ typedef struct
 #define __RC_UNWRAP_VAL_ELSE(result, type) __RC_UNWRAP_VAL_NR(result, type) if ((result).code != __RC_SUCCESS)
 #define unwrap_or_else(...) __RC_VARIADIC_NE(__VA_ARGS__, __RC_UNWRAP_VAL_ELSE, __RC_UNWRAP_CLR_ELSE)(__VA_ARGS__)
 
-#define __RC_OK_VAL(data, type) type *__rc = malloc(sizeof(type)); *__rc = data; return (__RC_RETURN_TYPE){__RC_SUCCESS, (void *)__rc};
-#define __RC_OK_UNK(data) void **__rc = malloc(sizeof(void *)); *__rc = (void *)data; return (__RC_RETURN_TYPE){__RC_SUCCESS, (void *)__rc};
+#define __RC_OK_VAL(data, type) type *__rc = malloc(sizeof(type)); *__rc = (data); return (__RC_RETURN_TYPE){__RC_SUCCESS, (void *)__rc};
+#define __RC_OK_UNK(data) long *__rc = malloc(sizeof(long)); *__rc = (long)(data); return (__RC_RETURN_TYPE){__RC_SUCCESS, (void *)__rc};
 #define __RC_OK_CLR() return (__RC_RETURN_TYPE){__RC_SUCCESS, NULL};
 #define ok(...) __RC_VARIADIC_E(_0 __VA_OPT__(,) __VA_ARGS__, __RC_OK_VAL, __RC_OK_UNK, __RC_OK_CLR)(__VA_ARGS__)
 
-#define __RC_ERR_VAL(error_code, message) return (__RC_RETURN_TYPE){error_code, (void *)message};
-#define __RC_ERR_CLR(message) return (__RC_RETURN_TYPE){__RC_DEFAULT_ERR, (void *)message};
+#define __RC_ERR_VAL(error_code, message) return (__RC_RETURN_TYPE){(error_code), (void *)(message)};
+#define __RC_ERR_CLR(message) return (__RC_RETURN_TYPE){__RC_DEFAULT_ERR, (void *)(message)};
 #define err(...) __RC_VARIADIC_NE(__VA_ARGS__, __RC_ERR_VAL, __RC_ERR_CLR)(__VA_ARGS__)
 
 #endif
