@@ -24,6 +24,13 @@ SOFTWARE.
 
 */
 
+/*
+
+Free software, made by @gregoire-badiche
+Check out https://github.com/gregoire-badiche/rustic-errors for more inforlation
+
+*/
+
 #ifndef RUSTIC_ERRORS
 #define RUSTIC_ERRORS
 
