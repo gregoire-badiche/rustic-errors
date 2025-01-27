@@ -22,12 +22,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-*/
 
-/*
+This is free software, made by @gregoire-badiche
+Check out https://github.com/gregoire-badiche/rustic-errors for more information
 
-Free software, made by @gregoire-badiche
-Check out https://github.com/gregoire-badiche/rustic-errors for more inforlation
+Feel free to include this file in any of your project!
 
 */
 
