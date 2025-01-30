@@ -85,7 +85,7 @@ typedef struct
     return (__RC_RETURN_TYPE){__RC_SUCCESS, (void *)__rc};
 #define __RC_OK_UNK(data)              \
     __RC_DEFAULT_TYPE *__rc = malloc(sizeof(__RC_DEFAULT_TYPE)); \
-    *__rc = (__RC_DEFAULT_TYPE)(data);              \
+    *__rc = *(__RC_DEFAULT_TYPE *)(&data);              \
     return (__RC_RETURN_TYPE){__RC_SUCCESS, (void *)__rc};
 #define __RC_OK_CLR() return (__RC_RETURN_TYPE){__RC_SUCCESS, NULL};
 #define ok(...) __RC_VARIADIC(_0 __VA_OPT__(, ) __VA_ARGS__, __RC_OK_VAL, __RC_OK_UNK, __RC_OK_CLR)(__VA_ARGS__)

@@ -29,7 +29,8 @@ result_t returns_custom_error()
 result_t no_error()
 {
     // Inferring the type
-    ok(12);
+    int a = 12;
+    ok(a);
 }
 
 int main(int argc, char const *argv[])
