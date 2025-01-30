@@ -35,9 +35,9 @@ void end_fn(int v)
     result(int) r = fn(v);
     
     // Sets res to the result
-    int res = unwrap_or_else(r) {
+    int res = unwrap_or_else(r, error, message) {
         // This is called if there was an error
-        printf("Error : %s\n", r.data.e);
+        printf("Error : %s\n", message);
 
         // Do not forget to set res!!
         res = -1;

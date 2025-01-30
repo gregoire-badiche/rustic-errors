@@ -65,7 +65,7 @@ typedef enum
     
 #define unwrap(res) (res).data.v; if ((res).code != __RC_SUCCESS) return (res);
 
-#define unwrap_or_else(res) (res).data.v; if ((res).code != __RC_SUCCESS)
+#define unwrap_or_else(r, err, m) (r).data.v; char * m = (r).data.e; __RC_STATUS_TYPE err = (r).code; if (err != __RC_SUCCESS)
 
 #define __RC_OK_VAL(T, d) \
     return (result(T)){.code = __RC_SUCCESS, .data.v = d};
